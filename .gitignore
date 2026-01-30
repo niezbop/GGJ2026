@@ -1,4 +1,4 @@
-# From https://github.com/github/gitignore/blob/main/Unity.gitignore
+﻿# From https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 .utmp/
 /[Ll]ibrary/
@@ -74,3 +74,4 @@ crashlytics-build.properties
 ## My additions
 # IntelliJ/Rider
 .idea/
+Assets/ThirdParty/
