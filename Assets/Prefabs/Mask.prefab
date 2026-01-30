@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1118693381987661254
 Transform:
   m_ObjectHideFlags: 0
@@ -320,6 +320,8 @@ MonoBehaviour:
   maneFeature: 0
   hornFeature: 0
   expressionFeature: 0
-  maneElements: []
+  maneElements:
+  - {fileID: 4805118681736786331}
+  - {fileID: 3635576178113511929}
   hornElements: []
   expressionElements: []
