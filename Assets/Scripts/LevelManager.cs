@@ -21,13 +21,18 @@ public class LevelManager : MonoBehaviour {
   private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
+    Clear();
     currentLevelIndex = 0;
     LoadLevel(CurrentLevel);
   }
 
   public void NextLevel() {
     // TODO: Handle end of game logic
-    if(currentLevelIndex >= levels.Length) {}
+    if (currentLevelIndex >= levels.Length) {
+
+    }
+
+    Clear();
     currentLevelIndex++;
     LoadLevel(CurrentLevel);
   }
@@ -49,6 +54,16 @@ public class LevelManager : MonoBehaviour {
       newMaskFeatures.FromConfiguration(maskConfiguration);
 
       currentAngle += angleIncrement;
+    }
+  }
+
+  private void Clear() {
+    foreach (var maskInstance in maskInstances) {
+      Destroy(maskInstance.gameObject);
+    }
+
+    foreach (Transform child in maskParentTransform) {
+      Destroy(child.gameObject);
     }
   }
 
