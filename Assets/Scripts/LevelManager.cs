@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour {
 
   public void SpawnMaskAtPosition(float angleDeg, float radius, float height) {
     var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
-    maskPlacer.PlaceMask(newMaskInstance.transform, angleDeg, radius, height);
+    maskPlacer.PlaceMask(newMaskInstance.transform, new CylindricalVector3(radius, angleDeg, height));
 
     var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
     newMaskFeatures.SetRandomFeatures();
