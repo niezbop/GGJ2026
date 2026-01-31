@@ -8,6 +8,8 @@ public class MaskSelectable : MonoBehaviour {
   private float maxIntensity = 0f;
   private Tween currentTween;
 
+  public Light SelectionLight => selectionLight;
+
   private void Awake() {
     maxIntensity = selectionLight.intensity;
   }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IDisposable {
@@ -6,6 +7,9 @@ public class Game : MonoBehaviour, IDisposable {
   [SerializeField] private Timer timer;
   [SerializeField] private LevelManager levelManager;
   [SerializeField] private GameMenuManager gameMenuManager;
+  [SerializeField] private GameEffects gameEffects;
+
+  [SerializeField] private bool debugWinOnAnyMask = false;
 
   private void Start() {
     maskSelector.OnMaskSelected += OnMaskSelected;
@@ -16,8 +20,13 @@ public class Game : MonoBehaviour, IDisposable {
     var maskObject = mask.gameObject;
     var maskFeatures = maskObject.GetComponent<MaskFeatures>();
 
-    if (levelManager.CurrentLevel.IsIntruder(maskFeatures.MaskConfiguration)) {
-      WinLevel();
+    if (levelManager.CurrentLevel.IsIntruder(maskFeatures.MaskConfiguration) || debugWinOnAnyMask) {
+      if (levelManager.IsLastLevel()) {
+        WinWholeGame();
+        return;
+      }
+
+      WinLevel(mask);
     } else {
       Lose();
     }
@@ -27,14 +36,14 @@ public class Game : MonoBehaviour, IDisposable {
     gameMenuManager.ShowWinMenu();
   }
 
-  private void WinLevel() {
-    if (levelManager.IsLastLevel()) {
-      WinWholeGame();
-      return;
-    }
+  private void WinLevel(MaskSelectable selectedMask) {
+    if (selectedMask == null) return;
 
-    timer.RestartCountdown();
-    levelManager.NextLevel();
+    // Play transition effect, load next level during blackout
+    gameEffects.PlayLevelWinTransition(selectedMask, () => {
+      timer.RestartCountdown();
+      levelManager.NextLevel();
+    });
   }
 
   private void Lose() {
@@ -59,6 +68,6 @@ public class Game : MonoBehaviour, IDisposable {
 
   [ContextMenu("Win level")]
   private void WinLevelDebug() {
-    WinLevel();
+    WinLevel(null);
   }
 }
