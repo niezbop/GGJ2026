@@ -20580,10 +20580,10 @@ MonoBehaviour:
   gameOverMenuUI: {fileID: 2450328435525429962}
   gameOverLevelLabel: {fileID: 1130800855}
   gameOverRestartButton: {fileID: 3859614479415511879}
-  gameOverBackToMainMenuButton: {fileID: 0}
+  gameOverBackToMainMenuButton: {fileID: 2108868329}
   winMenuUI: {fileID: 959602735}
   winRestartButton: {fileID: 753073844}
-  winBackToMainMenuButton: {fileID: 0}
+  winBackToMainMenuButton: {fileID: 1008327991}
 --- !u!4 &1725064757
 Transform:
   m_ObjectHideFlags: 0
