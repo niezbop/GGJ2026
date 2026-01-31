@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private AbstractLevel testLevel;
 
   public ILevel CurrentLevel => levels[currentLevelIndex];
+  public int CurrentLevelIndex => currentLevelIndex;
 
   private List<MaskFeatures> maskInstances = new();
 
@@ -24,6 +25,10 @@ public class LevelManager : MonoBehaviour {
     Clear();
     currentLevelIndex = 0;
     LoadLevel(CurrentLevel);
+  }
+
+  public bool IsLastLevel() {
+    return currentLevelIndex >= levels.Length - 1;
   }
 
   public void NextLevel() {
@@ -42,8 +47,7 @@ public class LevelManager : MonoBehaviour {
     var angleIncrement = 360.0f / maskPositions.Count;
     var currentAngle = angleIncrement / 2.0f;
 
-    foreach(var (maskConfiguration, configuredPosition) in maskPositions)
-    {
+    foreach (var (maskConfiguration, configuredPosition) in maskPositions) {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
       // TODO: Handle logic for numerous masks
       var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, placerHeight);
