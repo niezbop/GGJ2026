@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum ExpressionType { Surprise, Creepy, Stoic }
 public enum HornType { Ears, Goat, Halo }
@@ -8,10 +10,16 @@ public enum ManeType { None, Fur, Feather }
 [SelectionBase]
 public class MaskFeatures : MonoBehaviour {
   [System.Serializable]
-  public struct Configuration {
+  public struct Configuration : IEquatable<Configuration> {
     [SerializeField] public ExpressionType expressionType;
     [SerializeField] public HornType hornFeature;
     [SerializeField] public ManeType maneFeature;
+
+    public bool Equals(Configuration other) => expressionType == other.expressionType && hornFeature == other.hornFeature && maneFeature == other.maneFeature;
+
+    public override bool Equals(object obj) => obj is Configuration other && Equals(other);
+
+    public override int GetHashCode() => HashCode.Combine((int)expressionType, (int)hornFeature, (int)maneFeature);
   }
 
   [Header("This mask's current features")]
