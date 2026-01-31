@@ -12,9 +12,6 @@ public class MaskSelector : MonoBehaviour {
 
   private MaskSelectable currentSelection;
 
-  private void Start() {
-  }
-
   public void OnInteract() {
     if (currentSelection != null) {
       Debug.Log($"Selected mask: {currentSelection.gameObject.name}");
@@ -25,7 +22,8 @@ public class MaskSelector : MonoBehaviour {
   }
 
   private void Update() {
-    Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    var mouseScreenPosition = Mouse.current.position.ReadValue();
+    Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
     MaskSelectable newSelection = null;
 
     if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, maskLayer)) {
