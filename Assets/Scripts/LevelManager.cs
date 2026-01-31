@@ -4,27 +4,25 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
   [SerializeField] private MaskPlacementManager maskPlacer;
   [SerializeField] private GameObject maskPrefab;
-
-  [SerializeField] private Transform testMaskObject;
   [SerializeField] private Transform maskParentTransform;
 
+  // Test stuff
   [SerializeField] private float testPlacerAngle = 0f;
   [SerializeField] private float testPlacerRadius = 2f;
   [SerializeField] private float testPlacerHeight = 1f;
 
-  private List<GameObject> maskInstances = new();
+  private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
-    if (testMaskObject != null) {
-      maskPlacer.PlaceMask(testMaskObject, testPlacerAngle, testPlacerRadius, testPlacerHeight);
-    }
   }
 
   public void SpawnMaskAtPosition(float angleDeg, float radius, float height) {
     var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
     maskPlacer.PlaceMask(newMaskInstance.transform, angleDeg, radius, height);
 
-    maskInstances.Add(newMaskInstance);
+    var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
+    newMaskFeatures.SetRandomFeatures();
+    maskInstances.Add(newMaskFeatures);
   }
 
   [ContextMenu("Test Place Mask")]
@@ -40,3 +38,4 @@ public class LevelManager : MonoBehaviour {
     maskInstances.Clear();
   }
 }
+/*  */
