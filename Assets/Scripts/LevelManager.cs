@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private float testPlacerHeight = 1f;
   [SerializeField] private float testPlacerMaskCount = 1f;
 
+  private ILevel currentLevel;
+  public ILevel CurrentLevel => currentLevel;
+
   private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
