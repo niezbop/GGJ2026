@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 
   [Header("Placement configuration")]
   [SerializeField] private float placerRadius;
+  [SerializeField] private float placerHeight;
 
   [Header("Levels")]
   private int currentLevelIndex;
@@ -40,7 +41,7 @@ public class LevelManager : MonoBehaviour {
     {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
       // TODO: Handle logic for numerous masks
-      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, 0);
+      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, placerHeight);
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));
 
       var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
