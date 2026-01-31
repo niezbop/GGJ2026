@@ -10,31 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 424e394e477740f6a9f2cf3dc90ecc7d, type: 3}
-  m_Name: Sample Level
+  m_Name: SampleLevel
   m_EditorClassIdentifier: Assembly-CSharp::ConfigurableLevel
   levelConfigurations:
   - maskFeatures:
-      expressionType: 0
-      hornFeature: 0
-      maneFeature: 0
+      expressionType: 1
+      hornFeature: 2
+      maneFeature: 1
     position:
-      r: 0
-      a: 0
-      h: 0
-  - maskFeatures:
-      expressionType: 0
-      hornFeature: 0
-      maneFeature: 0
-    position:
-      r: 0
-      a: 0
-      h: 0
-  - maskFeatures:
-      expressionType: 0
-      hornFeature: 0
-      maneFeature: 0
-    position:
-      r: -4.22
-      a: 3.27
-      h: 0
+      r: 6
+      a: 90
+      h: 4
   intruderIndex: 0

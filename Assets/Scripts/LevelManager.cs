@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour {
   }
 
   public void NextLevel() {
+    // TODO: Handle end of game logic
     if(currentLevelIndex >= levels.Length) {}
     currentLevelIndex++;
     LoadLevel(CurrentLevel);
@@ -42,7 +43,10 @@ public class LevelManager : MonoBehaviour {
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));
 
       var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
+      newMaskFeatures.SetupShadowMeshes();
       newMaskFeatures.FromConfiguration(maskConfiguration);
+
+      currentAngle += angleIncrement;
     }
   }
 

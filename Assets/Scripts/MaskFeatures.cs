@@ -46,7 +46,6 @@ public class MaskFeatures : MonoBehaviour {
 
   private void OnValidate() {
     UpdateMaskVisuals();
-    SetupShadowMeshes();
     ValidateFeatureLists();
   }
 

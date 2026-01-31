@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Level List", menuName = "Levels/List")]
+[CreateAssetMenu(fileName = "LevelList", menuName = "Levels/List")]
 public class LevelList : ScriptableObject, IEnumerable<ILevel> {
   [SerializeField] AbstractLevel[] levels;
 
