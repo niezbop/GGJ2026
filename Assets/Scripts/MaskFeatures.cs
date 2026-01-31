@@ -24,6 +24,7 @@ public class MaskFeatures : MonoBehaviour {
 
   [Header("This mask's current features")]
   [SerializeField] private Configuration maskConfiguration;
+  public Configuration MaskConfiguration => maskConfiguration;
 
   [Header("Feature element references (order must match enum order)")]
   [SerializeField] private List<GameObject> expressionElements;
