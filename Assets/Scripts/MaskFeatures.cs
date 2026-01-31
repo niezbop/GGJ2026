@@ -81,6 +81,11 @@ public class MaskFeatures : MonoBehaviour {
     UpdateMaskVisuals();
   }
 
+  public void FromConfiguration(Configuration configuration) {
+    maskConfiguration = configuration;
+    UpdateMaskVisuals();
+  }
+
   public void SetRandomFeatures() {
     maskConfiguration.expressionType = RandomExpression();
     maskConfiguration.hornFeature = RandomHorn();

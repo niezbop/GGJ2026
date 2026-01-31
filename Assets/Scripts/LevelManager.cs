@@ -6,39 +6,48 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private GameObject maskPrefab;
   [SerializeField] private Transform maskParentTransform;
 
-  // Test stuff
-  [SerializeField] private float testPlacerAngle = 0f;
-  [SerializeField] private float testPlacerRadius = 2f;
-  [SerializeField] private float testPlacerHeight = 1f;
-  [SerializeField] private float testPlacerMaskCount = 1f;
+  [Header("Placement configuration")]
+  [SerializeField] private float placerRadius;
 
-  private ILevel currentLevel;
-  public ILevel CurrentLevel => currentLevel;
+  [Header("Levels")]
+  private int currentLevelIndex;
+  [SerializeField] private LevelList levels;
+  [SerializeField] private AbstractLevel testLevel;
+
+  public ILevel CurrentLevel => levels[currentLevelIndex];
 
   private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
+    currentLevelIndex = 0;
+    LoadLevel(CurrentLevel);
   }
 
-  public void SpawnMaskAtPosition(float angleDeg, float radius, float height) {
-    var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
-    maskPlacer.PlaceMask(newMaskInstance.transform, new CylindricalVector3(radius, angleDeg, height));
-
-    var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
-    newMaskFeatures.SetRandomFeatures();
-    maskInstances.Add(newMaskFeatures);
+  public void NextLevel() {
+    if(currentLevelIndex >= levels.Length) {}
+    currentLevelIndex++;
+    LoadLevel(CurrentLevel);
   }
 
-  [ContextMenu("Test Place Mask")]
-  private void TestSpawnMask() {
-    SpawnMaskAtPosition(testPlacerAngle, testPlacerRadius, testPlacerHeight);
-  }
+  private void LoadLevel(ILevel level) {
+    var maskPositions = level.GetMasks();
+    var angleIncrement = 360.0f / maskPositions.Count;
+    var currentAngle = angleIncrement / 2.0f;
 
-  [ContextMenu("Test Place Multiple Masks")]
-  private void TestSpawnMultipleMasks() {
-    for (int i = 0; i < testPlacerMaskCount; i++) {
-      float angle = i * 360f / testPlacerMaskCount;
-      SpawnMaskAtPosition(angle, testPlacerRadius, testPlacerHeight);
+    foreach(var (maskConfiguration, configuredPosition) in maskPositions)
+    {
+      var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
+      // TODO: Handle logic for numerous masks
+      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, 0);
+      maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));
+
+      var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
+      newMaskFeatures.FromConfiguration(maskConfiguration);
     }
+  }
+
+  [ContextMenu("Test Level Loading")]
+  private void LoadTestLevel() {
+    LoadLevel(testLevel);
   }
 }

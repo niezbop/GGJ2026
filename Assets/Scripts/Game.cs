@@ -4,6 +4,7 @@ using UnityEngine;
 public class Game : MonoBehaviour, IDisposable {
   [SerializeField] private MaskSelector maskSelector;
   [SerializeField] private Timer timer;
+  [SerializeField] private LevelManager levelManager;
 
   private void Start() {
     maskSelector.OnMaskSelected += OnMaskSelected;
@@ -11,7 +12,18 @@ public class Game : MonoBehaviour, IDisposable {
   }
 
   private void OnMaskSelected(MaskSelectable mask) {
-    
+    var maskObject = mask.gameObject;
+    var maskFeatures = maskObject.GetComponent<MaskFeatures>();
+
+    if (levelManager.CurrentLevel.IsIntruder(maskFeatures.MaskConfiguration)) {
+      WinLevel();
+    } else {
+      Lose();
+    }
+  }
+
+  private void WinLevel() {
+
   }
 
   private void Lose() {

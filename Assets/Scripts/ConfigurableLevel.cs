@@ -13,8 +13,8 @@ public class ConfigurableLevel : AbstractLevel {
   [SerializeField] private LevelConfiguration[] levelConfigurations;
   [SerializeField] private int intruderIndex;
 
-  public override Dictionary<MaskFeatures.Configuration, CylindricalVector3> GetMasks() {
-    var masks = new Dictionary<MaskFeatures.Configuration, CylindricalVector3>();
+  public override Dictionary<MaskFeatures.Configuration, CylindricalVector3?> GetMasks() {
+    var masks = new Dictionary<MaskFeatures.Configuration, CylindricalVector3?>();
     foreach (var levelConfiguration in levelConfigurations) {
       masks.Add(levelConfiguration.maskFeatures, levelConfiguration.position);
     }
