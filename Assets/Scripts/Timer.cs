@@ -5,7 +5,7 @@ public class Timer : MonoBehaviour
   [SerializeField] private int seconds;
 
   private float startTime = -1.0f;
-  public bool Started { get { return startTime > 0; } }
+  public bool Started => startTime >= 0;
 
   public delegate void TimerEvent();
   public event TimerEvent OnTimerElapsed = delegate { };
@@ -23,8 +23,9 @@ public class Timer : MonoBehaviour
   }
 
   private void Update() {
-    if (Time.time - startTime > seconds) {
+    if (Started && Time.time - startTime > seconds) {
       OnTimerElapsed?.Invoke();
+      StopCountdown();
     }
   }
 }
