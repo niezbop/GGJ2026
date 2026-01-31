@@ -30,8 +30,14 @@ public class MaskFeatures : MonoBehaviour {
   [SerializeField] private List<GameObject> hornElements;
   [SerializeField] private List<GameObject> maneElements;
 
+  [Header("Shadow Casting")]
+  [SerializeField] private RenderingLayerMask visibleMeshLayer;
+  [SerializeField] private RenderingLayerMask shadowCasterMeshLayer;
+
   private void Start() {
     UpdateMaskVisuals();
+    SetupShadowMeshes();
+
 #if UNITY_EDITOR
     ValidateFeatureLists();
 #endif
@@ -39,6 +45,7 @@ public class MaskFeatures : MonoBehaviour {
 
   private void OnValidate() {
     UpdateMaskVisuals();
+    SetupShadowMeshes();
     ValidateFeatureLists();
   }
 
@@ -82,6 +89,34 @@ public class MaskFeatures : MonoBehaviour {
 
   public bool Matches(ExpressionType expr, HornType horn, ManeType mane) {
     return maskConfiguration.expressionType == expr && maskConfiguration.hornFeature == horn && maskConfiguration.maneFeature == mane;
+  }
+
+  public void SetupShadowMeshes() {
+    foreach (var renderer in GetComponentsInChildren<MeshRenderer>(true)) {
+      // Set visible mesh layer & shadows off
+      // renderer.renderingLayerMask = (uint)visibleMeshLayer;
+      renderer.renderingLayerMask = visibleMeshLayer;
+      renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+      // Create shadow duplicate
+      var shadowCasterObj = new GameObject($"{renderer.name}_Shadow");
+      shadowCasterObj.transform.SetParent(renderer.transform, false);
+      shadowCasterObj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+      shadowCasterObj.transform.localScale = Vector3.one;
+
+      var shadowFilter = shadowCasterObj.AddComponent<MeshFilter>();
+      shadowFilter.sharedMesh = renderer.GetComponent<MeshFilter>().sharedMesh;
+
+      var shadowRenderer = shadowCasterObj.AddComponent<MeshRenderer>();
+      shadowRenderer.sharedMaterials = renderer.sharedMaterials;
+      shadowRenderer.renderingLayerMask = (uint)shadowCasterMeshLayer;
+      shadowRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+    }
+  }
+
+  [ContextMenu("Setup shadow casting meshes")]
+  private void SetupShadowCastingMeshesContextMenu() {
+    SetupShadowMeshes();
   }
 
   // Static methods

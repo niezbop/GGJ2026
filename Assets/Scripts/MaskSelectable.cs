@@ -14,6 +14,7 @@ public class MaskSelectable : MonoBehaviour {
 
   private void Start() {
     selectionLight.intensity = 0f;
+    selectionLight.enabled = true;
   }
 
   private void OnDestroy() {
