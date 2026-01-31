@@ -75,3 +75,7 @@ crashlytics-build.properties
 # IntelliJ/Rider
 .idea/
 Assets/ThirdParty/
+
+# Blender stuff
+Blender/**.fbx
+Blender/**.blend1
