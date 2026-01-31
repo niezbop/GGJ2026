@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 
   [Header("Placement configuration")]
   [SerializeField] private float placerRadius;
+  [SerializeField] private float placerHeight;
 
   [Header("Levels")]
   private int currentLevelIndex;
@@ -20,13 +21,18 @@ public class LevelManager : MonoBehaviour {
   private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
+    Clear();
     currentLevelIndex = 0;
     LoadLevel(CurrentLevel);
   }
 
   public void NextLevel() {
     // TODO: Handle end of game logic
-    if(currentLevelIndex >= levels.Length) {}
+    if (currentLevelIndex >= levels.Length) {
+
+    }
+
+    Clear();
     currentLevelIndex++;
     LoadLevel(CurrentLevel);
   }
@@ -40,7 +46,7 @@ public class LevelManager : MonoBehaviour {
     {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
       // TODO: Handle logic for numerous masks
-      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, 0);
+      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, placerHeight);
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));
 
       var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
@@ -48,6 +54,16 @@ public class LevelManager : MonoBehaviour {
       newMaskFeatures.FromConfiguration(maskConfiguration);
 
       currentAngle += angleIncrement;
+    }
+  }
+
+  private void Clear() {
+    foreach (var maskInstance in maskInstances) {
+      Destroy(maskInstance.gameObject);
+    }
+
+    foreach (Transform child in maskParentTransform) {
+      Destroy(child.gameObject);
     }
   }
 
