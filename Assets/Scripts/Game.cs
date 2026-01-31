@@ -23,7 +23,7 @@ public class Game : MonoBehaviour, IDisposable {
   }
 
   private void WinLevel() {
-
+    levelManager.NextLevel();
   }
 
   private void Lose() {
