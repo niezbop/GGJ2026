@@ -9,9 +9,9 @@ public enum ManeType { None, Fur, Feather }
 public class MaskFeatures : MonoBehaviour {
   [System.Serializable]
   public struct Configuration {
-    [SerializeField] private ExpressionType expressionType;
-    [SerializeField] private HornType hornFeature;
-    [SerializeField] private ManeType maneFeature;
+    [SerializeField] public ExpressionType expressionType;
+    [SerializeField] public HornType hornFeature;
+    [SerializeField] public ManeType maneFeature;
   }
 
   [Header("This mask's current features")]
