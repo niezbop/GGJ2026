@@ -15,9 +15,7 @@ public class MaskFeatures : MonoBehaviour {
   }
 
   [Header("This mask's current features")]
-  [SerializeField] private ExpressionType expressionFeature;
-  [SerializeField] private HornType hornFeature;
-  [SerializeField] private ManeType maneFeature;
+  [SerializeField] private Configuration maskConfiguration;
 
   [Header("Feature element references (order must match enum order)")]
   [SerializeField] private List<GameObject> expressionElements;
@@ -50,32 +48,32 @@ public class MaskFeatures : MonoBehaviour {
 
   private void UpdateMaskVisuals() {
     for (int i = 0; i < expressionElements.Count; i++) {
-      expressionElements[i].SetActive(i == (int)expressionFeature);
+      expressionElements[i].SetActive(i == (int)maskConfiguration.expressionType);
     }
     for (int i = 0; i < hornElements.Count; i++) {
-      hornElements[i].SetActive(i == (int)hornFeature);/*  */
+      hornElements[i].SetActive(i == (int)maskConfiguration.hornFeature);/*  */
     }
     for (int i = 0; i < maneElements.Count; i++) {
-      maneElements[i].SetActive(i == (int)maneFeature);
+      maneElements[i].SetActive(i == (int)maskConfiguration.maneFeature);
     }
   }
 
   public void SetMaskFeatures(ExpressionType expr, HornType horn, ManeType mane) {
-    expressionFeature = expr;
-    hornFeature = horn;
-    maneFeature = mane;
+    maskConfiguration.expressionType = expr;
+    maskConfiguration.hornFeature = horn;
+    maskConfiguration.maneFeature = mane;
     UpdateMaskVisuals();
   }
 
   public void SetRandomFeatures() {
-    expressionFeature = RandomExpression();
-    hornFeature = RandomHorn();
-    maneFeature = RandomMane();
+    maskConfiguration.expressionType = RandomExpression();
+    maskConfiguration.hornFeature = RandomHorn();
+    maskConfiguration.maneFeature = RandomMane();
     UpdateMaskVisuals();
   }
 
   public bool Matches(ExpressionType expr, HornType horn, ManeType mane) {
-    return expressionFeature == expr && hornFeature == horn && maneFeature == mane;
+    return maskConfiguration.expressionType == expr && maskConfiguration.hornFeature == horn && maskConfiguration.maneFeature == mane;
   }
 
   // Static methods

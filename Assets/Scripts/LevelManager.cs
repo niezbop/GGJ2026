@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private float testPlacerAngle = 0f;
   [SerializeField] private float testPlacerRadius = 2f;
   [SerializeField] private float testPlacerHeight = 1f;
+  [SerializeField] private float testPlacerMaskCount = 1f;
 
   private List<MaskFeatures> maskInstances = new();
 
@@ -30,12 +31,12 @@ public class LevelManager : MonoBehaviour {
     SpawnMaskAtPosition(testPlacerAngle, testPlacerRadius, testPlacerHeight);
   }
 
-  [ContextMenu("Delete All Masks")]
-  private void DeleteAllMasks() {
-    foreach (var mask in maskInstances) {
-      Destroy(mask);
+  [ContextMenu("Test Place Multiple Masks")]
+  private void TestSpawnMultipleMasks() {
+    for (int i = 0; i < testPlacerMaskCount; i++) {
+      float angle = i * 360f / testPlacerMaskCount;
+      SpawnMaskAtPosition(angle, testPlacerRadius, testPlacerHeight);
     }
-    maskInstances.Clear();
   }
 }
 /*  */
