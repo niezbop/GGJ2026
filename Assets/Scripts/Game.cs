@@ -1,5 +1,4 @@
 using System;
-using System.Xml;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IDisposable {
