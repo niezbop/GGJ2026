@@ -12,16 +12,16 @@ public class MaskSelectable : MonoBehaviour {
     maxIntensity = selectionLight.intensity;
   }
 
-  private void Start() {
+  private void OnEnable() {
     selectionLight.intensity = 0f;
     selectionLight.gameObject.SetActive(false);
   }
 
-  private void OnDestroy() {
+  private void OnDisable() {
     currentTween.Stop();
   }
 
-  private void OnDisable() {
+  private void OnDestroy() {
     currentTween.Stop();
   }
 
@@ -38,6 +38,10 @@ public class MaskSelectable : MonoBehaviour {
 
   public void SetSelected(bool selected) {
     currentTween.Stop();
+
+    if (selectionLight == null) {
+      return;
+    }
 
     if (selected) {
       AnimateSelectionLightOn();
