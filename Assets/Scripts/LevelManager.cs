@@ -18,6 +18,9 @@ public class LevelManager : MonoBehaviour {
 
   public ILevel CurrentLevel => levels[currentLevelIndex];
   public int CurrentLevelIndex => currentLevelIndex;
+  public int LevelsCount => levels.Length;
+
+  public LevelList Levels => levels;
 
   private List<MaskFeatures> maskInstances = new();
 
