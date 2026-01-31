@@ -14,16 +14,35 @@ public class MaskSelectable : MonoBehaviour {
 
   private void Start() {
     selectionLight.intensity = 0f;
-    selectionLight.enabled = true;
+    selectionLight.gameObject.SetActive(false);
   }
 
   private void OnDestroy() {
     currentTween.Stop();
   }
 
+  private void OnDisable() {
+    currentTween.Stop();
+  }
+
+  private void AnimateSelectionLightOff() {
+    currentTween = Tween.LightIntensity(selectionLight, 0f, fadeDuration, Ease.OutQuad).OnComplete(() => {
+      selectionLight.gameObject.SetActive(false);
+    });
+  }
+
+  private void AnimateSelectionLightOn() {
+    selectionLight.gameObject.SetActive(true);
+    currentTween = Tween.LightIntensity(selectionLight, maxIntensity, fadeDuration, Ease.OutQuad);
+  }
+
   public void SetSelected(bool selected) {
     currentTween.Stop();
-    float targetIntensity = selected ? maxIntensity : 0f;
-    currentTween = Tween.LightIntensity(selectionLight, targetIntensity, fadeDuration, Ease.OutQuad);
+
+    if (selected) {
+      AnimateSelectionLightOn();
+    } else {
+      AnimateSelectionLightOff();
+    }
   }
 }

@@ -107,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8514363200389437397
 Transform:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ Light:
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 1, g: 0.94641757, b: 0.75157225, a: 1}
-  m_Intensity: 87.24
+  m_Intensity: 42.58
   m_Range: 6.2644763
   m_SpotAngle: 63.72904
   m_InnerSpotAngle: 22.879868
@@ -771,9 +771,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.1958764
-  m_Height: 3.0598435
+  m_Height: 3.4418082
   m_Direction: 1
-  m_Center: {x: 0, y: 0.30992174, z: 0.18}
+  m_Center: {x: 2.2817104e-10, y: 0.24040079, z: 0.17999995}
 --- !u!114 &2104378081850416885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 4315171069433340936}
-  fadeDuration: 3
+  fadeDuration: 2
 --- !u!1 &6145599975215534624
 GameObject:
   m_ObjectHideFlags: 0

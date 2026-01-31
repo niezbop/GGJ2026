@@ -3,19 +3,25 @@ using PrimeTweenDemo;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MaskSelector : MonoBehaviour, IDisposable {
+public class MaskSelector : MonoBehaviour {
   [SerializeField] private float maxDistance = 20f;
   [SerializeField] private LayerMask maskLayer;
 
   public delegate void MaskSelectedEvent(MaskSelectable mask);
   public event MaskSelectedEvent OnMaskSelected = delegate { };
 
-  [SerializeField] private InputAction clickAction;
-
   private MaskSelectable currentSelection;
 
   private void Start() {
-    clickAction.performed += OnClick;
+  }
+
+  public void OnInteract() {
+    if (currentSelection != null) {
+      Debug.Log($"Selected mask: {currentSelection.gameObject.name}");
+      OnMaskSelected?.Invoke(currentSelection);
+    } else {
+      Debug.Log("No mask selected");
+    }
   }
 
   private void Update() {
@@ -37,15 +43,5 @@ public class MaskSelector : MonoBehaviour, IDisposable {
     Gizmos.color = Color.green;
     Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     Gizmos.DrawRay(ray.origin, ray.direction * maxDistance);
-  }
-
-  private void OnClick(InputAction.CallbackContext _) {
-    if (currentSelection != null) {
-      OnMaskSelected?.Invoke(currentSelection);
-    }
-  }
-
-  public void Dispose() {
-    clickAction.performed -= OnClick;
   }
 }
