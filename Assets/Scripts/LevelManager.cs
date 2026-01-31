@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private float testPlacerHeight = 1f;
   [SerializeField] private float testPlacerMaskCount = 1f;
 
+  private ILevel currentLevel;
+  public ILevel CurrentLevel => currentLevel;
+
   private List<MaskFeatures> maskInstances = new();
 
   private void Start() {
@@ -19,7 +22,7 @@ public class LevelManager : MonoBehaviour {
 
   public void SpawnMaskAtPosition(float angleDeg, float radius, float height) {
     var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
-    maskPlacer.PlaceMask(newMaskInstance.transform, angleDeg, radius, height);
+    maskPlacer.PlaceMask(newMaskInstance.transform, new CylindricalVector3(radius, angleDeg, height));
 
     var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
     newMaskFeatures.SetRandomFeatures();
