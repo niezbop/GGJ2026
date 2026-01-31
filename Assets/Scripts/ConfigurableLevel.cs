@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,10 +14,10 @@ public class ConfigurableLevel : AbstractLevel {
   [SerializeField] private LevelConfiguration[] levelConfigurations;
   [SerializeField] private int intruderIndex;
 
-  public override Dictionary<MaskFeatures.Configuration, CylindricalVector3?> GetMasks() {
-    var masks = new Dictionary<MaskFeatures.Configuration, CylindricalVector3?>();
+  public override List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>> GetMasks() {
+    var masks = new List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>>();
     foreach (var levelConfiguration in levelConfigurations) {
-      masks.Add(levelConfiguration.maskFeatures, levelConfiguration.position);
+      masks.Add(new Tuple<MaskFeatures.Configuration, CylindricalVector3?>(levelConfiguration.maskFeatures, levelConfiguration.position));
     }
     return masks;
   }
