@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IDisposable {
@@ -23,6 +24,7 @@ public class Game : MonoBehaviour, IDisposable {
   }
 
   private void WinLevel() {
+    timer.RestartCountdown();
     levelManager.NextLevel();
   }
 
