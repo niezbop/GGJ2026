@@ -17358,8 +17358,6 @@ MonoBehaviour:
   maskPlacer: {fileID: 1339401651}
   maskPrefab: {fileID: 6100293284669121122, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
   maskParentTransform: {fileID: 637086751}
-  placerRadius: 7
-  placerHeight: 2
   maskAudioSource: {fileID: 744953311}
   levels: {fileID: 11400000, guid: bd7001c17162c40a0883e3955130190b, type: 2}
   testLevel: {fileID: 11400000, guid: 319f3ca73bb2146e4a506b94503d1ed1, type: 2}

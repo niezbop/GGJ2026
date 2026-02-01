@@ -7,10 +7,6 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private GameObject maskPrefab;
   [SerializeField] private Transform maskParentTransform;
 
-  [Header("Placement configuration")]
-  [SerializeField][Obsolete] private float placerRadius;
-  [SerializeField][Obsolete] private float placerHeight;
-
   [Header("Audio configuration")]
   [SerializeField] private AudioSource maskAudioSource;
 
