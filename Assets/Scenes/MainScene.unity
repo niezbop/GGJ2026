@@ -4421,7 +4421,7 @@ MonoBehaviour:
   levelManager: {fileID: 1361269207}
   gameMenuManager: {fileID: 1725064756}
   gameEffects: {fileID: 354206325}
-  debugWinOnAnyMask: 1
+  debugWinOnAnyMask: 0
 --- !u!114 &354206325
 MonoBehaviour:
   m_ObjectHideFlags: 0
