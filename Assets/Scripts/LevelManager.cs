@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private float placerRadius;
   [SerializeField] private float placerHeight;
 
+  [Header("Placement configuration")]
+  [SerializeField] private AudioSource maskAudioSource;
+
   [Header("Levels")]
   private int currentLevelIndex;
   [SerializeField] private LevelList levels;
@@ -52,6 +55,8 @@ public class LevelManager : MonoBehaviour {
 
     foreach (var (maskConfiguration, configuredPosition) in maskPositions) {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
+      newMaskInstance.GetComponent<MaskSelectable>().SetAudioSource(maskAudioSource);
+
       // TODO: Handle logic for numerous masks
       var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, placerHeight);
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));

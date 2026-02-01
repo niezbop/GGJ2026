@@ -9,6 +9,7 @@ public class Game : MonoBehaviour, IDisposable {
   [SerializeField] private GameMenuManager gameMenuManager;
   [SerializeField] private GameEffects gameEffects;
 
+
   [SerializeField] private bool debugWinOnAnyMask = false;
 
   private void Start() {

@@ -4,6 +4,11 @@ using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameEffects : MonoBehaviour {
+  [Header("SFX")]
+  [SerializeField] private AudioSource sfxSource;
+  [SerializeField] private AudioClip correctMaskSelectedSfx;
+  [SerializeField] private float sfxVolume = .6f;
+
   [Header("Lights")]
   [SerializeField] private Light sceneSpotlight;
   [SerializeField] private Light[] flashlights;
@@ -96,6 +101,14 @@ public class GameEffects : MonoBehaviour {
 
       // Trigger camera shake at middle of the transition
       .InsertCallback(transitionDuration * 0.5f, () => impulseSource?.GenerateImpulse(shakeStrength))
+
+      // Play correct mask selected SFX
+      .InsertCallback(transitionDuration * 0.2f, () => {
+        if (sfxSource != null && correctMaskSelectedSfx != null) {
+          sfxSource.volume = sfxVolume;
+          sfxSource.PlayOneShot(correctMaskSelectedSfx);
+        }
+      })
 
       // --- Phase 2: Blackout ---
       .ChainDelay(blackoutDuration)

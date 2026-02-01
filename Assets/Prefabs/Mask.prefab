@@ -788,6 +788,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 4315171069433340936}
   fadeDuration: 2
+  maskSelectedSfx:
+  - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
+  - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
+  - {fileID: 8300000, guid: 82532e4e2efab6f47a25e451a5b23d35, type: 3}
+  - {fileID: 8300000, guid: 96afa5c55aedcf54a911dff518977073, type: 3}
+  - {fileID: 8300000, guid: f284976be61005040a66c0f475ff73d3, type: 3}
+  - {fileID: 8300000, guid: 90106233f4d596a4c94a58400e02a931, type: 3}
 --- !u!1 &6145599975215534624
 GameObject:
   m_ObjectHideFlags: 0
