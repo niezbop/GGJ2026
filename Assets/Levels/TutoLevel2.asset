@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConfigurableLevel
   levelConfigurations:
   - maskFeatures:
-      expressionType: 1
+      expressionType: 2
       hornFeature: 1
       maneFeature: 1
     position:
       r: 7
-      a: 50
+      a: 60
       h: 2
   - maskFeatures:
-      expressionType: 2
-      hornFeature: 2
+      expressionType: 1
+      hornFeature: 1
       maneFeature: 2
     position:
       r: 7
       a: 90
       h: 2
   - maskFeatures:
-      expressionType: 1
+      expressionType: 2
       hornFeature: 1
       maneFeature: 1
     position:
       r: 7
-      a: 130
+      a: 120
       h: 2
   intruderIndex: 1
