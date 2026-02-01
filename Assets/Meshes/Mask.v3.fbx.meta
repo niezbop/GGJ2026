@@ -3,7 +3,17 @@ guid: 58cefc17b65034adbad5a7b5e9277e4a
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mane.feathers.textured
+    second: {fileID: 2100000, guid: eaa22dfa76047ee468a514c0a305a6b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mane.fur.textired
+    second: {fileID: 2100000, guid: a5f1b3b00d0d8864c8ac64fb1d8a9075, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
