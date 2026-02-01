@@ -11,6 +11,10 @@ public class Game : MonoBehaviour, IDisposable {
 
   [SerializeField] private bool debugWinOnAnyMask = false;
 
+  private bool isChangingLevels = false;
+
+  public bool IsChangingLevels => isChangingLevels;
+
   private bool DebugWinOnAnyMask {
     get {
 #if UNITY_EDITOR
@@ -34,7 +38,6 @@ public class Game : MonoBehaviour, IDisposable {
     var maskFeatures = maskObject.GetComponent<MaskFeatures>();
 
     if (levelManager.CurrentLevel.IsIntruder(maskFeatures.MaskConfiguration) || debugWinOnAnyMask) {
-      mask.enabled = false;
       if (levelManager.IsLastLevel()) {
         WinWholeGame();
         return;
@@ -54,13 +57,16 @@ public class Game : MonoBehaviour, IDisposable {
     if (selectedMask == null) return;
 
     // Play transition effect, load next level during blackout
+    isChangingLevels = true;
     gameEffects.PlayLevelWinTransition(selectedMask, () => {
       timer.RestartCountdown();
       levelManager.NextLevel();
+      isChangingLevels = false;
     });
   }
 
   private void Lose() {
+    gameEffects.PlayWrongMaskChosenSFX();
     timer.StopCountdown();
     gameMenuManager.ShowGameOverMenu();
   }

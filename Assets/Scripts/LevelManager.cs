@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
+  [SerializeField] private Game game;
   [SerializeField] private MaskPlacementManager maskPlacer;
   [SerializeField] private GameObject maskPrefab;
   [SerializeField] private Transform maskParentTransform;
@@ -46,6 +47,7 @@ public class LevelManager : MonoBehaviour {
 
     foreach (var (maskConfiguration, configuredPosition) in maskPositions) {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
+      newMaskInstance.gameObject.GetComponent<MaskSelectable>().Initialize(game);
 
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition);
 

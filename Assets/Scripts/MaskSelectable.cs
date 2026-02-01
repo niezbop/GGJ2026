@@ -14,6 +14,7 @@ public class MaskSelectable : MonoBehaviour {
   private Tween currentLightTween;
   private Tween currentSfxTween;
   private bool isPlayingSfx = false;
+  private Game game;
 
   public Light SelectionLight => selectionLight;
 
@@ -36,6 +37,10 @@ public class MaskSelectable : MonoBehaviour {
     currentLightTween.Stop();
     currentSfxTween.Stop();
     // AudioSource destroyed with GameObject, no need to stop
+  }
+
+  public void Initialize(Game gameInstance) {
+    game = gameInstance;
   }
 
   private void FadeOutSFX() {
@@ -69,6 +74,8 @@ public class MaskSelectable : MonoBehaviour {
   }
 
   public void SetSelected(bool selected) {
+    if (game.IsChangingLevels) return;
+
     currentLightTween.Stop();
 
     if (selectionLight == null) {

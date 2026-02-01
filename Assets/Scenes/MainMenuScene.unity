@@ -729,10 +729,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightShaker
   referenceTransform: {fileID: 710092521}
-  xIntensity: 0.008
+  xIntensity: 0.02
   xSpeed: 1.6
   xOffset: 0
-  yIntensity: 0.008
+  yIntensity: 0.02
   ySpeed: 1.6
   yOffset: 1.03
 --- !u!1 &971219374

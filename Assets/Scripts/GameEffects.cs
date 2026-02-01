@@ -7,7 +7,9 @@ public class GameEffects : MonoBehaviour {
   [Header("SFX")]
   [SerializeField] private AudioSource sfxSource;
   [SerializeField] private AudioClip correctMaskSelectedSfx;
-  [SerializeField] private float sfxVolume = .6f;
+  [SerializeField] private AudioClip wrongMaskSelectedSfx;
+  [SerializeField] private float correctMaskSfxVolume = .6f;
+  [SerializeField] private float wrongMaskSfxVolume = 1f;
 
   [Header("Lights")]
   [SerializeField] private Light sceneSpotlight;
@@ -131,7 +133,7 @@ public class GameEffects : MonoBehaviour {
         if (sfxSource != null && correctMaskSelectedSfx != null) {
           sfxSource.volume = 0f;  // Start silent
           sfxSource.PlayOneShot(correctMaskSelectedSfx);
-          Tween.AudioVolume(sfxSource, sfxVolume, 0.5f, Ease.OutQuad);  // Fade in over 0.5s
+          Tween.AudioVolume(sfxSource, correctMaskSfxVolume, 0.5f, Ease.OutQuad);  // Fade in over 0.5s
         }
       })
 
@@ -234,6 +236,12 @@ public class GameEffects : MonoBehaviour {
 
       Tween.LightIntensity(light, 0f, 0.05f, Ease.Linear)
         .Chain(Tween.LightIntensity(light, originalIntensity, 0.05f, Ease.Linear));
+    }
+  }
+
+  public void PlayWrongMaskChosenSFX() {
+    if (sfxSource != null) {
+      sfxSource.PlayOneShot(wrongMaskSelectedSfx, wrongMaskSfxVolume);
     }
   }
 }

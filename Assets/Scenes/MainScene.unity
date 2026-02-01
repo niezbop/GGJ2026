@@ -1232,6 +1232,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2104378081850416885, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 354206324}
     - target: {fileID: 2176089871437964632, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -4507,6 +4511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEffects
   sfxSource: {fileID: 1227869492}
   correctMaskSelectedSfx: {fileID: 8300000, guid: fe8730d80340c254ea9346bc6b6c7748, type: 3}
+  wrongMaskSelectedSfx: {fileID: 8300000, guid: a4e6748a0f75053479c665033263f211, type: 3}
   sfxVolume: 0.6
   sceneSpotlight: {fileID: 410087040}
   flashlights:
@@ -17506,6 +17511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47c1d237be7ac14cbc9f51c08132806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  game: {fileID: 354206324}
   maskPlacer: {fileID: 1339401651}
   maskPrefab: {fileID: 6100293284669121122, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
   maskParentTransform: {fileID: 637086751}

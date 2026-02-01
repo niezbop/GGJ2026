@@ -697,6 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acd0b69f4d41a64da771a7b533a520f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
+  game: {fileID: 0}
   selectionLight: {fileID: 4315171069433340936}
   fadeDuration: 2
   sfxSource: {fileID: 721007879107209450}
