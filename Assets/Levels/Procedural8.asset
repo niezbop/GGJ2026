@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: Procedural8
   m_EditorClassIdentifier: Assembly-CSharp::ProceduralLevel
   maskCount: 8
+  placementAngle: 180
+  offsetAngle: 90
+  radius: 7
+  radiusJiggle: 0.5
+  height: 2
+  heightJiggle: 0.2
