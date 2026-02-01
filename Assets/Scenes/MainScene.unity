@@ -579,6 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 976742847}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -1157,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 626932442}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -1270,14 +1272,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4927776275604349528, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5610441483981633176, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6100293284669121122, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
       propertyPath: m_Name
       value: Mask
@@ -1285,10 +1279,6 @@ PrefabInstance:
     - target: {fileID: 6100293284669121122, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834096263795579644, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
-      propertyPath: maskConfiguration.maneFeature
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3220,6 +3210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1873493310}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -4521,6 +4512,7 @@ MonoBehaviour:
   flashlights:
   - {fileID: 1173107842}
   - {fileID: 236048374}
+  gameStartTransitionDuration: 2
   transitionDuration: 2
   blackoutDuration: 0.15
   flickerIntensityMin: 0.1
@@ -5249,6 +5241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 2021620417}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -5749,6 +5742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 257340003}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -7595,6 +7589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1061415653}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -8549,6 +8544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1050152781}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -9040,7 +9036,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.559
   m_Pitch: 1
   Loop: 0
@@ -9630,6 +9626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1040669445}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -10842,6 +10839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 790958204}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -11492,6 +11490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 479191562}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -11984,6 +11983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1364523070}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -16265,7 +16265,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.559
   m_Pitch: 1
   Loop: 0
@@ -17434,7 +17434,6 @@ MonoBehaviour:
   maskPlacer: {fileID: 1339401651}
   maskPrefab: {fileID: 6100293284669121122, guid: 16d56145cab694941bcee9bce8bbb47b, type: 3}
   maskParentTransform: {fileID: 637086751}
-  maskAudioSource: {fileID: 744953311}
   levels: {fileID: 11400000, guid: bd7001c17162c40a0883e3955130190b, type: 2}
   testLevel: {fileID: 11400000, guid: 319f3ca73bb2146e4a506b94503d1ed1, type: 2}
 --- !u!114 &1361269208
@@ -20007,6 +20006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaskSelectable
   selectionLight: {fileID: 1581062686}
   fadeDuration: 2
+  sfxSource: {fileID: 0}
   maskSelectedSfx:
   - {fileID: 8300000, guid: c6b4e8d6feaa2d3439fa03f68a379d8e, type: 3}
   - {fileID: 8300000, guid: fc4ba33e163f821428b94b42be1df6b2, type: 3}
@@ -24320,6 +24320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f977e9ae4dbd4914ac733559861f1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorFollower
+  gameStartActivationDelay: 4
 --- !u!1 &2006026651
 GameObject:
   m_ObjectHideFlags: 0

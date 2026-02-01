@@ -6,13 +6,14 @@ public class MaskSelectable : MonoBehaviour {
   [SerializeField] private float fadeDuration = 3f;
 
   [Header("Selected SFX")]
+  [SerializeField] private AudioSource sfxSource;
   [SerializeField] private AudioClip[] maskSelectedSfx;
   [SerializeField] private float sfxVolume = .5f;
 
   private float maxIntensity = 0f;
   private Tween currentLightTween;
   private Tween currentSfxTween;
-  private AudioSource sfxSource;
+  private bool isPlayingSfx = false;
 
   public Light SelectionLight => selectionLight;
 
@@ -25,20 +26,23 @@ public class MaskSelectable : MonoBehaviour {
     selectionLight.gameObject.SetActive(false);
   }
 
-  private void OnDisable() {
-    currentLightTween.Stop();
-    FadeOutSFX();
-  }
+  // private void OnDisable() {
+  //   currentLightTween.Stop();
+  //   currentSfxTween.Stop();
+  //   if (sfxSource != null) sfxSource.Stop();
+  // }
 
   private void OnDestroy() {
     currentLightTween.Stop();
-    FadeOutSFX();
+    currentSfxTween.Stop();
+    // AudioSource destroyed with GameObject, no need to stop
   }
 
   private void FadeOutSFX() {
     if (sfxSource != null && sfxSource.volume > 0f) {
       currentSfxTween = Tween.AudioVolume(sfxSource, 0f, .6f, Ease.OutQuad).OnComplete(() => {
         sfxSource.Stop();
+        isPlayingSfx = false;
       });
     }
   }
@@ -56,13 +60,12 @@ public class MaskSelectable : MonoBehaviour {
 
     // Play mask selected SFX
     currentSfxTween.Stop();
+    if (sfxSource == null || isPlayingSfx) return;
+
     sfxSource.volume = sfxVolume;
     int randomIndex = Random.Range(0, maskSelectedSfx.Length);
     sfxSource.PlayOneShot(maskSelectedSfx[randomIndex]);
-  }
-
-  public void SetAudioSource(AudioSource source) {
-    sfxSource = source;
+    isPlayingSfx = true;
   }
 
   public void SetSelected(bool selected) {

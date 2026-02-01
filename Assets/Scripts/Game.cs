@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Game : MonoBehaviour, IDisposable {
   [SerializeField] private MaskSelector maskSelector;
@@ -7,7 +8,6 @@ public class Game : MonoBehaviour, IDisposable {
   [SerializeField] private LevelManager levelManager;
   [SerializeField] private GameMenuManager gameMenuManager;
   [SerializeField] private GameEffects gameEffects;
-
 
   [SerializeField] private bool debugWinOnAnyMask = false;
 
@@ -25,6 +25,8 @@ public class Game : MonoBehaviour, IDisposable {
     maskSelector.OnMaskSelected += OnMaskSelected;
     timer.OnTimerElapsed += Lose;
     Time.timeScale = 1f;
+    // Move cursor to center of screen
+    Mouse.current.WarpCursorPosition(new Vector2(Screen.width / 2f, Screen.height / 2f));
   }
 
   private void OnMaskSelected(MaskSelectable mask) {
@@ -32,6 +34,7 @@ public class Game : MonoBehaviour, IDisposable {
     var maskFeatures = maskObject.GetComponent<MaskFeatures>();
 
     if (levelManager.CurrentLevel.IsIntruder(maskFeatures.MaskConfiguration) || debugWinOnAnyMask) {
+      mask.enabled = false;
       if (levelManager.IsLastLevel()) {
         WinWholeGame();
         return;

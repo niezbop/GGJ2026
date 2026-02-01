@@ -7,9 +7,6 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private GameObject maskPrefab;
   [SerializeField] private Transform maskParentTransform;
 
-  [Header("Audio configuration")]
-  [SerializeField] private AudioSource maskAudioSource;
-
   [Header("Levels")]
   private int currentLevelIndex;
   [SerializeField] private LevelList levels;
@@ -49,7 +46,6 @@ public class LevelManager : MonoBehaviour {
 
     foreach (var (maskConfiguration, configuredPosition) in maskPositions) {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
-      newMaskInstance.GetComponent<MaskSelectable>().SetAudioSource(maskAudioSource);
 
       maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition);
 

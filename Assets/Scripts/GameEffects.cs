@@ -13,6 +13,9 @@ public class GameEffects : MonoBehaviour {
   [SerializeField] private Light sceneSpotlight;
   [SerializeField] private Light[] flashlights;
 
+  [Header("Game start timings")]
+  [SerializeField] private float gameStartTransitionDuration = 2.5f;
+
   [Header("Transition Timings")]
   [SerializeField] private float transitionDuration = 2f;
   [SerializeField] private float blackoutDuration = 0.15f;
@@ -48,10 +51,31 @@ public class GameEffects : MonoBehaviour {
         }
       }
     }
+
+    PlayStartGameEffects();
   }
 
   private void OnDestroy() {
     currentTransitionSequence.Stop();
+  }
+
+  private void PlayStartGameEffects() {
+    // lights start at 0 intensity and fade in
+
+    if (sceneSpotlight != null) {
+      sceneSpotlight.intensity = 0f;
+      Tween.LightIntensity(sceneSpotlight, originalSpotlightIntensity, gameStartTransitionDuration, Ease.OutQuad);
+    }
+
+    if (flashlights != null && flashlights.Length > 0) {
+      for (int i = 0; i < flashlights.Length; i++) {
+        if (flashlights[i] != null) {
+          flashlights[i].intensity = 0f;
+          float targetIntensity = originalFlashlightIntensities[i];
+          Tween.LightIntensity(flashlights[i], targetIntensity, gameStartTransitionDuration, Ease.OutQuad);
+        }
+      }
+    }
   }
 
   /// <summary>
@@ -91,7 +115,7 @@ public class GameEffects : MonoBehaviour {
       .Group(Tween.Scale(maskTransform, targetMaskScale, transitionDuration, Ease.InQuad))
 
       // Scene spotlight gradually dims
-      .Group(Tween.LightIntensity(sceneSpotlight, 0f, transitionDuration, Ease.InQuad))
+      .Group(Tween.LightIntensity(sceneSpotlight, 0f, transitionDuration * .8f, Ease.InQuad))
 
       // Mask's selection light intensifies briefly then fades
       .Group(CreateSelectionLightFade(maskSelectionLight, originalSelectionLightIntensity, transitionDuration))
@@ -105,8 +129,9 @@ public class GameEffects : MonoBehaviour {
       // Play correct mask selected SFX
       .InsertCallback(transitionDuration * 0.2f, () => {
         if (sfxSource != null && correctMaskSelectedSfx != null) {
-          sfxSource.volume = sfxVolume;
+          sfxSource.volume = 0f;  // Start silent
           sfxSource.PlayOneShot(correctMaskSelectedSfx);
+          Tween.AudioVolume(sfxSource, sfxVolume, 0.5f, Ease.OutQuad);  // Fade in over 0.5s
         }
       })
 
@@ -128,9 +153,9 @@ public class GameEffects : MonoBehaviour {
   private Sequence CreateSelectionLightFade(Light selectionLight, float originalIntensity, float duration) {
     if (selectionLight == null) return Sequence.Create();
 
-    float intensifyDuration = duration * 0.65f;  // Long ominous glow
+    float intensifyDuration = duration * 0.50f;  // Long ominous glow
     float fadeDuration = duration * 0.20f;        // Quick snap to black
-    float peakIntensity = originalIntensity * 2f;
+    float peakIntensity = originalIntensity * 1.5f;
 
     return Tween.LightIntensity(selectionLight, peakIntensity, intensifyDuration, Ease.OutQuad)
       .Chain(Tween.LightIntensity(selectionLight, 0f, fadeDuration, Ease.InCubic));  // InCubic for sharper cutoff
@@ -146,9 +171,9 @@ public class GameEffects : MonoBehaviour {
     float t2 = totalDuration * 0.1f;
     float t3 = totalDuration * 0.15f;
     float t4 = totalDuration * 0.1f;
-    float t5 = totalDuration * 0.2f;
+    float t5 = totalDuration * 0.15f;
     float t6 = totalDuration * 0.1f;
-    float t7 = totalDuration * 0.2f;
+    float t7 = totalDuration * 0.15f;
 
     var sequence = Sequence.Create();
 
