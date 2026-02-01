@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour {
   [SerializeField] private string mainSceneName = "MainScene";
   [SerializeField] private Button startButton;
+  [SerializeField] private Button quitButton;
 
   [Header("SFX")]
   [SerializeField] private AudioSource sfxSource;
@@ -16,6 +17,7 @@ public class MainMenuManager : MonoBehaviour {
 
   private void Start() {
     startButton.onClick.AddListener(LoadMainScene);
+    quitButton.onClick.AddListener(QuitGame);
 
     Tween.Delay(1f).OnComplete(() => {
       sfxSource.PlayOneShot(menuSfx);
@@ -24,5 +26,9 @@ public class MainMenuManager : MonoBehaviour {
 
   private void LoadMainScene() {
     SceneManager.LoadScene(mainSceneName);
+  }
+
+  private void QuitGame() {
+    Application.Quit();
   }
 }
