@@ -651,6 +651,37 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &710092520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 710092521}
+  m_Layer: 0
+  m_Name: RotationReference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &710092521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710092520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791139101
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791139102}
+  - component: {fileID: 791139103}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -684,6 +716,25 @@ Transform:
   - {fileID: 1702191210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 7.173, y: 16.427, z: 0.807}
+--- !u!114 &791139103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791139101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d6a49567d2244039d297e23a787ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightShaker
+  referenceTransform: {fileID: 710092521}
+  xIntensity: 0.008
+  xSpeed: 1.6
+  xOffset: 0
+  yIntensity: 0.008
+  ySpeed: 1.6
+  yOffset: 1.03
 --- !u!1 &971219374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3163287715660456302, guid: 6e29133dbecf999429428ea8ab779903, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5561565248264507962, guid: 6e29133dbecf999429428ea8ab779903, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1993,3 +2048,4 @@ SceneRoots:
   - {fileID: 989109287}
   - {fileID: 145383090}
   - {fileID: 791139102}
+  - {fileID: 710092521}
