@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef1bb432736004e06843a782e15f8458, type: 3}
-  m_Name: Procedural6
+  m_Name: Procedural8-240
   m_EditorClassIdentifier: Assembly-CSharp::ProceduralLevel
-  maskCount: 6
-  placementAngle: 140
+  maskCount: 8
+  placementAngle: 240
   offsetAngle: 90
   radius: 7
   radiusJiggle: 0.5

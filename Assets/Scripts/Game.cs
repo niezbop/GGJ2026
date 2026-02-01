@@ -12,6 +12,16 @@ public class Game : MonoBehaviour, IDisposable {
 
   [SerializeField] private bool debugWinOnAnyMask = false;
 
+  private bool DebugWinOnAnyMask {
+    get {
+#if UNITY_EDITOR
+      return debugWinOnAnyMask;
+#else
+      return false;
+#endif
+    }
+  }
+
   private void Start() {
     maskSelector.OnMaskSelected += OnMaskSelected;
     timer.OnTimerElapsed += Lose;

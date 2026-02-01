@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8721ea4ca22044a6696f554ae0236fa6, type: 3}
   m_Name: GoodList
   m_EditorClassIdentifier: Assembly-CSharp::LevelList
-  levels: []
+  levels:
+  - {fileID: 11400000, guid: 4b9c943d656cf4a22a0a5355b48a66b6, type: 2}
+  - {fileID: 11400000, guid: 319f3ca73bb2146e4a506b94503d1ed1, type: 2}
+  - {fileID: 11400000, guid: 1d5e2c01d10524f75867d5ec2fbd65a5, type: 2}
+  - {fileID: 11400000, guid: 394a5efad5e2c4a4bb20ac90d17b4588, type: 2}
+  - {fileID: 11400000, guid: 3d9b9cf692b8e411d85b1002eafa740d, type: 2}
+  - {fileID: 11400000, guid: ed02224fd1a2a4fde913c50b3e69eeed, type: 2}
+  - {fileID: 11400000, guid: ed02224fd1a2a4fde913c50b3e69eeed, type: 2}
+  - {fileID: 11400000, guid: 1cd44741ce8594467b302c70211e1349, type: 2}
+  - {fileID: 11400000, guid: 1cd44741ce8594467b302c70211e1349, type: 2}
+  - {fileID: 11400000, guid: 840e868ec33d04bb19d89d2f398a5794, type: 2}
+  - {fileID: 11400000, guid: e31936d0334e74797aad4eb2d2a2da3e, type: 2}
+  - {fileID: 11400000, guid: e31936d0334e74797aad4eb2d2a2da3e, type: 2}
+  - {fileID: 11400000, guid: a5a2e0034133445b9bf08ad093ebc4dc, type: 2}
