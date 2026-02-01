@@ -10,6 +10,15 @@ public class ProceduralLevel : AbstractLevel {
   [Range(6,30)]
   [SerializeField] private int maskCount;
 
+  [Header("Placement configuration")]
+  [Range(0,360)]
+  [SerializeField] private float placementAngle;
+  [SerializeField] private float offsetAngle = 90;
+  [SerializeField] private float radius = 7;
+  [SerializeField] private float radiusJiggle = .5f;
+  [SerializeField] private float height = 2;
+  [SerializeField] private float heightJiggle = .2f;
+
   private List<MaskFeatures.Configuration> maskConfigurations;
   private int intruderIndex;
 
@@ -57,7 +66,7 @@ public class ProceduralLevel : AbstractLevel {
     }
   }
 
-  public override List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>> GetMasks() {
+  public override List<Tuple<MaskFeatures.Configuration, CylindricalVector3>> GetMasks() {
     maskConfigurations = new List<MaskFeatures.Configuration>();
 
     /* FEATURES
@@ -97,9 +106,18 @@ public class ProceduralLevel : AbstractLevel {
     intruderConfiguration.maneFeature = (ManeType)(uniqueFeatureType == 2 ? uniqueFeatureVariant : manePool.Draw());
 
     maskConfigurations.Insert(intruderIndex, intruderConfiguration);
-    var maskPositions = new List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>>();
+
+    var angleIncrement = placementAngle / (maskCount - 1);
+    var currentAngle = -placementAngle / 2 + offsetAngle;
+    var maskPositions = new List<Tuple<MaskFeatures.Configuration, CylindricalVector3>>();
     foreach (var mask in maskConfigurations) {
-      maskPositions.Add(new Tuple<MaskFeatures.Configuration, CylindricalVector3?>(mask, null));
+      var position = new CylindricalVector3(
+        radius + Random.Range(-radiusJiggle, radiusJiggle),
+        currentAngle,
+        height + Random.Range(-heightJiggle, heightJiggle)
+      );
+      maskPositions.Add(new Tuple<MaskFeatures.Configuration, CylindricalVector3>(mask, position));
+      currentAngle += angleIncrement;
     }
 
     return maskPositions;

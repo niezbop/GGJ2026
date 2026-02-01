@@ -8,10 +8,10 @@ public class LevelManager : MonoBehaviour {
   [SerializeField] private Transform maskParentTransform;
 
   [Header("Placement configuration")]
-  [SerializeField] private float placerRadius;
-  [SerializeField] private float placerHeight;
+  [SerializeField][Obsolete] private float placerRadius;
+  [SerializeField][Obsolete] private float placerHeight;
 
-  [Header("Placement configuration")]
+  [Header("Audio configuration")]
   [SerializeField] private AudioSource maskAudioSource;
 
   [Header("Levels")]
@@ -50,22 +50,16 @@ public class LevelManager : MonoBehaviour {
 
   private void LoadLevel(ILevel level) {
     var maskPositions = level.GetMasks();
-    var angleIncrement = 360.0f / maskPositions.Count;
-    var currentAngle = angleIncrement / 2.0f;
 
     foreach (var (maskConfiguration, configuredPosition) in maskPositions) {
       var newMaskInstance = Instantiate(maskPrefab, maskParentTransform);
       newMaskInstance.GetComponent<MaskSelectable>().SetAudioSource(maskAudioSource);
 
-      // TODO: Handle logic for numerous masks
-      var defaultPosition = new CylindricalVector3(placerRadius, currentAngle, placerHeight);
-      maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition.GetValueOrDefault(defaultPosition));
+      maskPlacer.PlaceMask(newMaskInstance.transform, configuredPosition);
 
       var newMaskFeatures = newMaskInstance.GetComponent<MaskFeatures>();
       newMaskFeatures.SetupShadowMeshes();
       newMaskFeatures.FromConfiguration(maskConfiguration);
-
-      currentAngle += angleIncrement;
     }
   }
 

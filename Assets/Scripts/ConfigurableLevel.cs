@@ -14,10 +14,10 @@ public class ConfigurableLevel : AbstractLevel {
   [SerializeField] private LevelConfiguration[] levelConfigurations;
   [SerializeField] private int intruderIndex;
 
-  public override List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>> GetMasks() {
-    var masks = new List<Tuple<MaskFeatures.Configuration, CylindricalVector3?>>();
+  public override List<Tuple<MaskFeatures.Configuration, CylindricalVector3>> GetMasks() {
+    var masks = new List<Tuple<MaskFeatures.Configuration, CylindricalVector3>>();
     foreach (var levelConfiguration in levelConfigurations) {
-      masks.Add(new Tuple<MaskFeatures.Configuration, CylindricalVector3?>(levelConfiguration.maskFeatures, levelConfiguration.position));
+      masks.Add(new Tuple<MaskFeatures.Configuration, CylindricalVector3>(levelConfiguration.maskFeatures, levelConfiguration.position));
     }
     return masks;
   }
