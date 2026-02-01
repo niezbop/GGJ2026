@@ -22,6 +22,15 @@ public class MaskSelector : MonoBehaviour {
   }
 
   private void Update() {
+    // Don't process selection when game is paused
+    if (Time.timeScale == 0f) {
+      if (currentSelection != null) {
+        currentSelection.SetSelected(false);
+        currentSelection = null;
+      }
+      return;
+    }
+
     var mouseScreenPosition = Mouse.current.position.ReadValue();
     Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
     MaskSelectable newSelection = null;

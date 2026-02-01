@@ -1,5 +1,4 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IDisposable {
@@ -25,6 +24,7 @@ public class Game : MonoBehaviour, IDisposable {
   private void Start() {
     maskSelector.OnMaskSelected += OnMaskSelected;
     timer.OnTimerElapsed += Lose;
+    Time.timeScale = 1f;
   }
 
   private void OnMaskSelected(MaskSelectable mask) {

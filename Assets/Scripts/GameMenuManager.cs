@@ -49,11 +49,13 @@ public class GameMenuManager : MonoBehaviour {
   }
 
   public void ShowWinMenu() {
+    Time.timeScale = 0f;
     gameOverMenuUI.SetActive(false);
     winMenuUI.SetActive(true);
   }
 
   public void ShowGameOverMenu() {
+    Time.timeScale = 0f;
     winMenuUI.SetActive(false);
     gameOverMenuUI.SetActive(true);
 
