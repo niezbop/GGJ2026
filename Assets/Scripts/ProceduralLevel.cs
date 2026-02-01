@@ -49,7 +49,7 @@ public class ProceduralLevel : AbstractLevel {
         possibilities.Add(i);
       }
 
-      for (int i = 0; i < count - (variantsCount - 1) * 2; i++) {
+      for (int i = 0; i < count - (variantsCount - 1) * 2 - 1; i++) {
         possibilities.Add(unlockedVariants[Random.Range(0, unlockedVariants.Count)]);
       }
     }
